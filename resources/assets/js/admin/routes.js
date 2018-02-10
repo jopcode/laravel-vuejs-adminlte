@@ -1,29 +1,19 @@
-import Login from './pages/Login.vue';
-import Admin from './pages/Admin.vue'
-import NotFound from './pages/NotFound.vue';
-
-// Import Views
-import DashboardView from './pages/views/Dashboard.vue';
-import UsersView from './pages/views/Users.vue';
-
-// Routes
 const routes = [
   {
     path: '/login',
-    component: Login,
+		component: require('./pages/Login.vue'),
     name: 'login',
     meta: { requiresAuth: false },
   },
   {
     path: '/',
-    component: Admin,
+		component: require('./pages/Admin.vue'),
     meta: { requiresAuth: true },
     children: [
       {
         path: '/',
-        component: DashboardView,
+				component: () => import('./pages/views/Dashboard.vue'), // lazy load
         name: 'dashboard',
-        meta: {}
       },
       {
         path: '/dashboard',
@@ -31,16 +21,15 @@ const routes = [
       },
       {
         path: '/users',
-        component: UsersView,
+				component: () => import('./pages/views/Users.vue'), // lazy load
         name: 'users',
-        meta: {}
       }
     ]
   },
   {
     // not found handler
     path: '*',
-    component: NotFound
+		component: require('./pages/NotFound.vue'),
   }
 ];
 

@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default function (Vue) {
 	Vue.auth = {
 		setToken(token, expiration) {
@@ -5,6 +7,8 @@ export default function (Vue) {
 
 			localStorage.setItem('token', token);
 			localStorage.setItem('expiration', Date.now() + expiration_miliseconds);
+
+			axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 		},
 		getToken() {
 			let token = localStorage.getItem('token');

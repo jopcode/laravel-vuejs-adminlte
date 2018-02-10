@@ -3,10 +3,11 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import AnimatedVue from 'animated-vue';
 import VeeValidate from 'vee-validate';
-import AwesomeNotifications from "vue-awesome-notifications";
+import AwesomeNotifications from 'vue-awesome-notifications';
 import { sync } from 'vuex-router-sync';
 import routes from './routes';
 import store from './store';
+import axios from 'axios';
 
 import 'animate.css/animate.css';
 
@@ -17,6 +18,17 @@ Vue.use(Auth);
 Vue.use(AnimatedVue);
 Vue.use(VeeValidate);
 Vue.use(AwesomeNotifications, {	position: 'bottom-right' });
+
+
+// axios.defaults.headers.common['Authorization'] = 'Bearer ' + Auth.getToken();
+axios.interceptors.response.use( response => {
+    	return response;
+  	}, error => {
+		if( error.response.status === 500 ) {
+			Vue.prototype.$awn.alert('Whoops, something went wrong');
+		}
+    	return Promise.reject(error);
+  	});
 
 // Routing logic
 var router = new VueRouter({
