@@ -62,30 +62,13 @@ export default {
         signIn() {
             this.$validator.validateAll().then(valid => {
                 if (valid) {
-                    axios.post( Ziggy.baseUrl + 'oauth/token', this.getParams())
-                        .then( response => {
-                            if( response.data.access_token !== undefined  ) {
-                                this.$auth.setToken(response.data.access_token, response.data.expires_in);
-
-                                this.$router.push({ name: 'dashboard' });
-                            }
-                        })
-                        .catch( error => {
-                            this.signin_error = error.response.data.message;
-                        });
+                    this.$auth.login(this.email, this.password)
+                        .then(() => { this.$router.push({ name: 'dashboard' }); })
+                        .catch(error => { this.signin_error = error.response.data.message; });
                 }else{
                     this.signin_error = this.errors.all()[0];
                 }
             });
-        },
-        getParams() {
-            return {
-                username: this.email,
-                password: this.password,
-                client_id: 2,
-                client_secret: 'OaBdufeaVNlg2efPFv4EHvJF6gCrs17wcbwzsJD7',
-                grant_type: 'password',
-            };
         },
         clearSignInError() {
             this.signin_error = null;
