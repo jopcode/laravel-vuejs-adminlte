@@ -2,10 +2,10 @@ import Vue from 'vue';
 import router from './router';
 
 // check if the user is authenticated
-router.beforeEach((to, from, next) => {
-    console.log('AuthCheck', Vue.prototype.$auth.check());
+router.beforeEach( async (to, from, next) => {
+    let is_authenticated  = await Vue.prototype.$auth.check();
 
-    if (to.matched.some(record => record.meta.requiresAuth) && ! Vue.prototype.$auth.check()) {
+    if (to.matched.some(record => record.meta.requiresAuth) && ! is_authenticated) {
         next({ name: 'login' });
     } else {
         next();
@@ -13,13 +13,14 @@ router.beforeEach((to, from, next) => {
 });
 
 // this check will be ran when page is loaded
-router.onReady( route => {
-    var auth = route.matched.some(record => { return record.meta.requiresAuth || false });
+router.onReady( async (route) => {
+    let auth = route.matched.some(record => { return record.meta.requiresAuth || false });
+    let is_authenticated = await Vue.prototype.$auth.check();
 
-    if ( auth && !Vue.prototype.$auth.check() && route.name !== 'login') {
+    if ( auth && ! is_authenticated && route.name !== 'login') {
         router.push({ name: 'login' });
     }
-    else if ( auth && Vue.prototype.$auth.check() && route.name === 'login') {
+    else if ( auth && is_authenticated && route.name === 'login') {
         router.push({ name: 'dashboard' });
     }
 });

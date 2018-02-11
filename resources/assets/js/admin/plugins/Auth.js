@@ -52,8 +52,10 @@ export default function (Vue) {
 		/**
 		 * Check if user is authenticated
 		*/
-		check() {
-			return this.getToken() ? true : false;
+		async check() {
+			let token = await this.getToken();
+
+			return token ? true : false;
 		},
 
 		/**
