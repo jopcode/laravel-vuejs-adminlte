@@ -5,7 +5,7 @@ import * as getters from './store/getters';
 import * as mutations from './store/mutations';
 import * as actions from './store/actions';
 
-import customer from './store/modules/user';
+import user from './store/modules/user';
 
 Vue.use(Vuex);
 
@@ -16,7 +16,7 @@ export default new Vuex.Store({
      * include modules here
      */
     modules: {
-        customer,
+        user,
     },
 
     /**

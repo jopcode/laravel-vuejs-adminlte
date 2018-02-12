@@ -4,8 +4,6 @@ import Vuex from 'vuex';
 import AnimatedVue from 'animated-vue';
 import VeeValidate from 'vee-validate';
 import AwesomeNotifications from 'vue-awesome-notifications';
-import axios from 'axios';
-import { sync } from 'vuex-router-sync';
 import store from './store';
 import Auth from './plugins/Auth.js';
 
@@ -23,8 +21,6 @@ require('./config/guards');
 
 import router from './config/router';
 
-
-sync(store, router);
 
 const app = new Vue({
 	el: '#app',

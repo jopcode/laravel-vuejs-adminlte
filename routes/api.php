@@ -14,13 +14,13 @@
 /**
  * ADMIN
  */
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
-
+Route::group(['namespace' => 'Admin\Api', 'prefix' => 'admin/api', 'as' => 'admin.api.', 'middleware' => 'auth:api'], function(){
+    Route::get('auth/user', 'AuthController@show')->name('auth.user');
 });
 
 /**
  * FRONT
  */
 Route::group(['namespace' => 'Front'], function(){
-	
+
 });

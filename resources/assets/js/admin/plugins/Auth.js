@@ -53,9 +53,11 @@ export default function (Vue) {
 		 * Check if user is authenticated
 		*/
 		async check() {
-			let token = await this.getToken();
+			let access_token = await this.getToken();
 
-			return token ? true : false;
+			axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
+
+			return access_token ? true : false;
 		},
 
 		/**

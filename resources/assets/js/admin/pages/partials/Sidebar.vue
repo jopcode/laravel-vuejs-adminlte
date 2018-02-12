@@ -4,14 +4,14 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="dist/img/user2-160x160.jpg" class="img-circle">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
+                    <p>{{ auth_user.name }}</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
-            
+
             <!-- search form -->
             <form action="#" method="get" class="sidebar-form">
                 <div class="input-group">
@@ -26,7 +26,7 @@
 
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header"></li>
-                
+
                 <router-link :to="{ name:'dashboard' }" tag="li">
                     <a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                 </router-link>
@@ -38,3 +38,16 @@
         </section>
     </aside>
 </template>
+
+<script>
+export default {
+	computed: {
+		auth_user(){
+			return this.$store.state.user;
+		}
+	},
+	created(){
+		this.$store.dispatch('getUserData');
+	}
+}
+</script>

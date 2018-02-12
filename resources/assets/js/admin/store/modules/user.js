@@ -1,18 +1,36 @@
+import axios from 'axios';
+
 const state = {
     id: null,
-    first_name: '',
-    last_name: '',
+    name: '',
+    email: '',
+    created_at: null,
+    updated_at: null,
+    roles: [],
 };
 
 const mutations = {
     SET_USER: (state, payload) => {
         state.id = payload.id;
-        state.first_name = payload.first_name;
-        state.last_name = payload.last_name;
+        state.name = payload.name;
+        state.email = payload.email;
+        state.created_at = payload.created_at;
+        state.updated_at = payload.updated_at;
+        state.roles = payload.roles;
+    }
+};
+
+const actions = {
+    getUserData: (context, payoload) => {
+        axios.get( route('admin.api.auth.user') )
+            .then( (response) => {
+                context.commit('SET_USER', response.data);
+            });
     }
 };
 
 export default {
     state,
-    mutations
+    mutations,
+    actions
 }
