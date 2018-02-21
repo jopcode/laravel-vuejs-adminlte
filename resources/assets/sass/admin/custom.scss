@@ -5,3 +5,11 @@ body {
 #app {
 	height: 100%;
 }
+
+.v-select {
+    border-radius: 0;
+
+    .dropdown-toggle {
+        border-radius: 0 !important;
+    }
+}

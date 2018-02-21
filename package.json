@@ -26,6 +26,7 @@
         "animate.css": "^3.6.1",
         "animated-vue": "^0.5.3",
         "vee-validate": "^2.0.3",
-        "vue-awesome-notifications": "^2.2.4"
+        "vue-awesome-notifications": "^2.2.4",
+        "vue-select": "^2.4.0"
     }
 }

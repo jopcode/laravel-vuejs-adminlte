@@ -14,8 +14,7 @@ const routes = [{
 		},
 		children: [{
 				path: '/',
-				component: () =>
-					import ('./pages/views/Dashboard.vue'), // lazy load
+				component: () => import ('./pages/views/Dashboard.vue'), // lazy load
 				name: 'dashboard',
 			},
 			{
@@ -23,9 +22,13 @@ const routes = [{
 				redirect: '/',
 			},
 			{
+				path: '/profile',
+				component: () => import ('./pages/views/Profile.vue'), // lazy load
+				name: 'profile',
+			},
+			{
 				path: '/users',
-				component: () =>
-					import ('./pages/views/Users.vue'), // lazy load
+				component: () => import ('./pages/views/Users.vue'), // lazy load
 				name: 'users',
 			}
 		]
