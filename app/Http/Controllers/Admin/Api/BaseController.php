@@ -31,6 +31,17 @@ class BaseController extends Controller
 	}
 
 	/**
+	 * Respond with failure status (500)
+	 *
+	 * @param array $data
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function respondWithFailure($data = [])
+	{
+		return response()->json($data, 500);
+	}
+
+	/**
 	 * Respond with created successfully
 	 *
 	 * @param array $data

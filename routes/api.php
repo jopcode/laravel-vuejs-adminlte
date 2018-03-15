@@ -16,6 +16,9 @@
  */
 Route::group(['namespace' => 'Admin\Api', 'prefix' => 'admin/api', 'as' => 'admin.api.', 'middleware' => 'auth:api'], function(){
     Route::get('auth/user', 'AuthController@show')->name('auth.user');
+    Route::put('auth/user', 'AuthController@update')->name('auth.user.update');
+
+    Route::get('roles', 'RoleController@index')->name('roles.index');
 });
 
 /**

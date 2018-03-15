@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\Controller;
-use App\Http\Resources\Admin\AuthUser;
+use App\Http\Resources\Admin\AuthUserResource;
 use App\Http\Controllers\Admin\Api\BaseController;
 
 class AuthController extends BaseController
@@ -18,7 +18,7 @@ class AuthController extends BaseController
     {
         $user = auth()->user();
 
-        return $this->respondWithSuccess(new AuthUser($user));
+        return $this->respondWithSuccess(new AuthUserResource($user));
     }
 
     /**
@@ -29,6 +29,18 @@ class AuthController extends BaseController
      */
     public function update(Request $request)
     {
-        //
+        $params = $request->only(['name', 'email', 'roles', 'password']);
+
+        $auth_user = auth()->user();
+
+        if( empty($params['password']) ) {
+            unset($params['password']);
+        }
+
+        if( $auth_user->syncRoles($params['roles'])->update($params) ) {
+            return $this->respondWithSuccess();
+        }
+
+        return $this->respondWithFailure();
     }
 }

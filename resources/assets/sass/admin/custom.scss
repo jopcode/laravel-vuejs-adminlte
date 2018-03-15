@@ -13,3 +13,9 @@ body {
         border-radius: 0 !important;
     }
 }
+
+.has-error {
+    .dropdown.v-select .dropdown-toggle {
+        border: 1px solid $color-danger;
+    }
+}
