@@ -15,10 +15,6 @@
 
                             <h3 class="profile-username text-center">{{ auth_user.name }}</h3>
 
-                            <p class="text-muted text-center">
-                                <span v-for="role in auth_user.roles">{{ role.name }}</span>
-                            </p>
-
                             <hr>
 
                             <div class="form-group" :class="{ 'has-error': errors.has('name') }">
@@ -40,7 +36,7 @@
                             <div class="form-group" :class="{ 'has-error': errors.has('roles') }">
                                 <label>Roles</label>
                                 <v-select name="roles"
-                                    @input="setRole"
+                                    v-model="params.roles"
                                     :options="roles"
                                     label="name"
                                     v-validate="'required'"
@@ -119,16 +115,21 @@ export default {
         save() {
             this.$validator.validateAll().then(valid => {
                 if (valid) {
-                    axios.put(route('admin.api.auth.user.update'), this.params)
-                        .then(() => {
+                    axios.put(route('admin.api.auth.user.update'), this.getParams())
+                        .then((response) => {
+                            this.$store.commit('SET_USER', response.data);
+
                             this.$awn.success('params was saved successfully');
                         });
                 }
-                console.log(this.$validator.errors);
             });
         },
-        setRole(selections){
-            this.params.roles = _.map(selections, (selection) => { return selection.id });
+        getParams() {
+            let params = _.clone(this.params);
+
+            params.roles = _.map(params.roles, (role) => { return role.id });
+
+            return params;
         }
     }
 }

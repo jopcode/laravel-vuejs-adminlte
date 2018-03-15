@@ -30,15 +30,14 @@ class AuthController extends BaseController
     public function update(Request $request)
     {
         $params = $request->only(['name', 'email', 'roles', 'password']);
-
-        $auth_user = auth()->user();
+        $user = auth()->user();
 
         if( empty($params['password']) ) {
             unset($params['password']);
         }
 
-        if( $auth_user->syncRoles($params['roles'])->update($params) ) {
-            return $this->respondWithSuccess();
+        if( $user->syncRoles($params['roles'])->update($params) ) {
+            return $this->respondWithSuccess(new AuthUserResource($user));
         }
 
         return $this->respondWithFailure();
