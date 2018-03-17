@@ -14,6 +14,7 @@ const mutations = {
         state.id = payload.id;
         state.name = payload.name;
         state.email = payload.email;
+        state.profile_image = payload.profile_image;
         state.created_at = payload.created_at;
         state.updated_at = payload.updated_at;
         state.roles = payload.roles;
