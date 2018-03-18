@@ -11,7 +11,8 @@
                     <!-- Profile Image -->
                     <div class="box box-primary">
                         <div class="box-body box-profile">
-                            <img class="profile-user-img img-responsive img-circle" :src="auth_user.profile_image">
+
+                            <profile-image-upload></profile-image-upload>
 
                             <h3 class="profile-username text-center">{{ auth_user.name }}</h3>
 
@@ -76,13 +77,14 @@
 </template>
 
 <script>
-import vSelect from 'vue-select';
 import axios from 'axios';
 import _ from 'lodash';
+import vSelect from 'vue-select';
+import ProfileImageUpload from './components/ProfileImageUpload';
 
 export default {
     components: {
-        vSelect
+        vSelect, ProfileImageUpload
     },
     data() {
         return {
@@ -114,7 +116,7 @@ export default {
                         .then((response) => {
                             this.$store.commit('SET_USER', response.data);
 
-                            this.$awn.success('params was saved successfully');
+                            this.$awn.success('Data was saved successfully');
                         });
                 }
             });
@@ -125,7 +127,7 @@ export default {
             params.roles = _.map(params.roles, (role) => { return role.id });
 
             return params;
-        }
+        },
     }
 }
 </script>

@@ -11,10 +11,10 @@ trait UserAccessors
      */
     public function getProfileImageAttribute($image)
     {
-        if( ! $image ) {
-            $image = 'default-profile.jpg';
+        if( $image ) {
+            return asset('storage/images/profile/'.$image);
         }
 
-        return asset('images/'.$image);
+        return asset('images/default-profile.jpg');
     }
 }

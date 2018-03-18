@@ -4,6 +4,7 @@ const state = {
     id: null,
     name: '',
     email: '',
+    profile_image: null,
     created_at: null,
     updated_at: null,
     roles: [],

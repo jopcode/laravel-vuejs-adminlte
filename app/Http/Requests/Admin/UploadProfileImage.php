@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Rules\Base64Types;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAuthUserRequest extends FormRequest
+class UploadProfileImage extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,16 +24,11 @@ class UpdateAuthUserRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'name' => 'required',
-            'email' => 'required|email',
-            'roles' => 'required',
+        return [
+            'profile_image' => [
+                'required',
+                new Base64Types(['jpg','jpeg','png'])
+            ]
         ];
-
-        if( ! empty(request()->get('password')) ) {
-            $rules['password'] = 'required|min:6|confirmed';
-        }
-
-        return $rules;
     }
 }

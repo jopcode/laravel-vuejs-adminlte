@@ -14,7 +14,7 @@ const routes = [{
 		},
 		children: [{
 				path: '/',
-				component: () => import ('./pages/views/Dashboard.vue'), // lazy load
+				component: () => import ('./pages/views/dashboard/Index.vue'), // lazy load
 				name: 'dashboard',
 			},
 			{
@@ -23,12 +23,12 @@ const routes = [{
 			},
 			{
 				path: '/profile',
-				component: () => import ('./pages/views/Profile.vue'), // lazy load
+				component: () => import ('./pages/views/profile/Index.vue'),
 				name: 'profile',
 			},
 			{
 				path: '/users',
-				component: () => import ('./pages/views/Users.vue'), // lazy load
+				component: () => import ('./pages/views/users/Index.vue'),
 				name: 'users',
 			}
 		]
