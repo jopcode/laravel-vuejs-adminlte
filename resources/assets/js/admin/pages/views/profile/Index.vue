@@ -12,7 +12,7 @@
                     <div class="box box-primary">
                         <div class="box-body box-profile">
 
-                            <profile-image-upload></profile-image-upload>
+                            <profile-image-upload :image="auth_user.profile_image"></profile-image-upload>
 
                             <h3 class="profile-username text-center">{{ auth_user.name }}</h3>
 
@@ -83,6 +83,7 @@ import vSelect from 'vue-select';
 import ProfileImageUpload from './components/ProfileImageUpload';
 
 export default {
+    name: 'ProfilePage',
     components: {
         vSelect, ProfileImageUpload
     },

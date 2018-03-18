@@ -1,7 +1,7 @@
 <template>
     <div class="profile-image-container" :class="{ 'uploading': uploading }">
         <input type="file" name="profile-image" @change="uploadProfileImage">
-        <img class="img-responsive" :src="profile_image">
+        <img class="img-responsive" :src="image">
     </div>
 </template>
 
@@ -14,11 +14,7 @@ export default {
             uploading: false,
         }
     },
-    computed: {
-		profile_image() {
-            return this.$store.state.user.profile_image;
-		}
-    },
+    props: ['image'],
     methods: {
         uploadProfileImage(event) {
             this.uploading = true;
@@ -37,7 +33,7 @@ export default {
 
                         this.uploading = false;
                     })
-                    .then(() => {
+                    .catch(() => {
                         this.uploading = false;
                     });
             }
