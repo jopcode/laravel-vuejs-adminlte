@@ -52,8 +52,8 @@ export default new Vuex.Store({
      *
      * SETUP:
      * setValue: (state, payload) => {
-   *    state.value = payload;
-   * }
+     *    state.value = payload;
+     * }
      *
      * USAGE IN COMPONENT:
      * this.$store.commit('setValue', value);
@@ -70,8 +70,8 @@ export default new Vuex.Store({
      *
      * SETUP:
      * setValue: ({ commit }, payload) => {
-   *    commit('mutationFunctionName', payload);
-   * }
+     *    commit('mutationFunctionName', payload);
+     * }
      *
      * USAGE IN COMPONENT:
      * this.$store.dispatch('setValue', value);
