@@ -50,16 +50,16 @@
                             <div class="form-group" :class="{ 'has-error': errors.has('password') }">
                                 <label>Password</label>
                                 <input name="password" type="password" class="form-control"
-                                    v-model="auth_user.password"
-                                    v-validate="(auth_user.password.length > 0) ? 'required|min:6' : ''"
+                                    v-model="password"
+                                    v-validate="password.length > 0 ? 'required|min:6' : ''"
                                     placeholder="Enter your password">
                             </div>
 
                             <div class="form-group" :class="{ 'has-error': errors.has('password_confirmation') }">
                                 <label>Password Repeat</label>
                                 <input name="password_confirmation" type="password" class="form-control"
-                                    v-model="auth_user.password_confirmation"
-                                    v-validate="'confirmed:password'"
+                                    v-model="password_confirmation"
+                                    v-validate="password.length > 0 ? 'required|confirmed:password' : ''"
                                     placeholder="Repeat your password">
                             </div>
                         </div>
@@ -90,15 +90,14 @@ export default {
     data() {
         return {
             available_roles: [],
+            password: '',
+            password_confirmation: '',
         }
     },
     computed: {
 		auth_user() {
             let data = _.clone(this.$store.state.user);
-
             data.roles = _.clone(this.$store.state.user.roles);
-            data.password = '';
-            data.password_confirmation = '';
 
             return data;
 		}
@@ -126,6 +125,8 @@ export default {
             let params = _.clone(this.auth_user);
 
             params.roles = _.map(params.roles, (role) => { return role.id });
+            params.password = this.password;
+            params.password_confirmation = this.password_confirmation;
 
             return params;
         },
