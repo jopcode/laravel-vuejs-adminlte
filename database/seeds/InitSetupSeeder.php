@@ -20,15 +20,34 @@ class InitSetupSeeder extends Seeder
 
         DB::statement("SET FOREIGN_KEY_CHECKS=0;");
 
-        DB::statement("INSERT INTO `model_has_roles` (`role_id`, `model_id`, `model_type`) VALUES(1,1,'App\\Models\\User');");
+        DB::table('model_has_roles')->insert([
+            'role_id' => 1,
+            'model_id' => 1,
+            'model_type' => 'App\\Models\\User',
+        ]);
 
-        DB::statement("INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES(1,'update profile','web','2018-03-15 19:09:37','2018-03-15 19:09:37');");
+        DB::table('permissions')->insert([
+            'id' => 1,
+            'name' => 'update profile',
+            'guard_name' => 'web',
+        ]);
 
-        DB::statement("INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES(1,1);");
+        DB::table('role_has_permissions')->insert([
+            'permission_id' => 1,
+            'role_id' => 1,
+        ]);
 
-        DB::statement("INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES (1,'admin','web','2018-01-28 00:24:29',NULL), (2,'customer','web','2018-03-15 18:51:32',NULL);");
+        DB::table('roles')->insert([
+            'id' => 1,
+            'name' => 'admin',
+            'guard_name' => 'web',
+        ]);
 
-        DB::statement("INSERT INTO `oauth_personal_access_clients` (`id`, `client_id`, `created_at`, `updated_at`) VALUES (1,1,'2018-02-04 00:43:14','2018-02-04 00:43:14');");
+        DB::table('roles')->insert([
+            'id' => 1,
+            'name' => 'admin',
+            'guard_name' => 'web',
+        ]);
 
         DB::statement("SET FOREIGN_KEY_CHECKS=1;");
     }
