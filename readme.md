@@ -1,6 +1,6 @@
 # Laravel, Vuejs & AdminLTE
 
-Boilerplate for Laravel, Vuejs & AdminLTE
+Boilerplate for Laravel, Vuejs & AdminLTE project.
 
 The main goal for this project was to create a single page application (SPA) for the administration area with Vuejs and AdminLTE.
 
