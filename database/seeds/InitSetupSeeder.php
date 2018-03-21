@@ -43,12 +43,6 @@ class InitSetupSeeder extends Seeder
             'guard_name' => 'web',
         ]);
 
-        DB::table('roles')->insert([
-            'id' => 1,
-            'name' => 'admin',
-            'guard_name' => 'web',
-        ]);
-
         DB::statement("SET FOREIGN_KEY_CHECKS=1;");
     }
 }
