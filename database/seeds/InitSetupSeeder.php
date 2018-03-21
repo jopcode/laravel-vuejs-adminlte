@@ -15,7 +15,7 @@ class InitSetupSeeder extends Seeder
         User::create([
             'name' => 'Administrator',
             'email' => 'admin@mail.com',
-            'password' => bcrypt('password'),
+            'password' => 'password', // mutator will handle the hashing
         ]);
 
         DB::statement("SET FOREIGN_KEY_CHECKS=0;");
